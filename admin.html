@@ -1,11 +1,71 @@
 <!DOCTYPE html>
 <html lang="sv">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Projekt backendkursen dalo2101</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <main>
+      <h1>Administrera meny</h1>
+      <form id="weeklyMenu">
+  <label>
+    Veckonummer (1-53):<br />
+    <input
+      type="number"
+      id="weekNumber"
+      name="weekNumber"
+      min="1"
+      max="53"
+      required
+    />
+  </label>
+  <button type="button" id="loadWeekBtn">Ladda vecka</button><br />
+
+  <div id="inputDish">
+    <div>
+      <label for="weekday">Veckodag</label><br />
+      <select name="weekday" id="weekday" required>
+        <option value="">-- Välj dag --</option>
+        <option value="Måndag">Måndag</option>
+        <option value="Tisdag">Tisdag</option>
+        <option value="Onsdag">Onsdag</option>
+        <option value="Torsdag">Torsdag</option>
+        <option value="Fredag">Fredag</option>
+        <option value="Lördag">Lördag</option>
+        <option value="Söndag">Söndag</option>
+      </select>
+    </div>
+
+    <div>
+      <label>
+        Maträtt:<br />
+        <input type="text" name="dish_name" id="dish_name" placeholder="Namn" required />
+      </label>
+    </div>
+
+    <div>
+      <label>
+        Beskrivning:<br />
+        <input
+          type="text"
+          name="dish_description"
+          id="dish_description"
+          placeholder="Beskrivning"
+        />
+      </label>
+    </div>
+    <div>
+      <button type="submit">Spara</button>
+    </div>
+  </div>
+</form>
+<div id="alertbox"></div>
+<div id="currentMenu"></div>
+</div>
+    </main>
+
+        <script type="module" src="js/admin.js"></script>
+  </body>
 </html>
