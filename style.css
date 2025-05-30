@@ -3,12 +3,23 @@
 }
 
 main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; 
     width: 90%;
     min-width: 250px;
+    max-width: 1600px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+.startPageContainer {
+    max-width: 500px;
+    margin: auto;
+}
+
+.container {
+    margin: auto;
 }
 
 #infobox {
@@ -16,6 +27,12 @@ main {
     text-align: center;
     color: red;
     font-size: 1.2rem;
+}
+
+#alertbox{
+    margin: auto;
+    text-align: center;
+    padding: 20px;
 }
 
 #status {
@@ -28,8 +45,7 @@ main {
 
 form {
     box-sizing: border-box;
-    width: 90%;
-    max-width: 600px;
+    /* max-width: 600px; */
     margin: auto;  
     padding: 20px;
     border: 1px solid #ccc;
@@ -72,12 +88,11 @@ form {
     background-color: #004d99;
     }
 
-    #currentMenu {
-        
-        width: 100%;
-        max-width: 600px;
-
-    }
+    /* #currentMenu,
+    .formAndAlert {
+    width: 100%;
+    max-width: 600px;
+    } */
 
     .menu-item {
         display: grid;
@@ -88,6 +103,21 @@ form {
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         cursor: pointer;
     }
+
+    #no-menu-items {
+
+        margin: auto;
+        margin-top: 50px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
+        background-color: rgb(255, 170, 170);
+        padding-top: 15px;
+        padding-bottom: 15px;
+        text-align: center;
+
+    }
+
 
     .menu-item:hover {
         background-color: #fee4ef !important;
@@ -106,6 +136,16 @@ form {
     }
 
 
-main {
-    border: 1px solid red;
+
+@media (min-width: 900px) {
+    .container {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+    }
+
+    .container > div {
+        flex: 1;
+    }
+    
 }

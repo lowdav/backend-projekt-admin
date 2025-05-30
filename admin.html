@@ -9,63 +9,84 @@
   <body>
     <main>
       <h1>Administrera meny</h1>
-      <form id="weeklyMenu">
-  <label>
-    Veckonummer (1-53):<br />
-    <input
-      type="number"
-      id="weekNumber"
-      name="weekNumber"
-      min="1"
-      max="53"
-      required
-    />
-  </label>
-  <button type="button" id="loadWeekBtn">Ladda vecka</button><br />
 
-  <div id="inputDish">
-    <div>
-      <label for="weekday">Veckodag</label><br />
-      <select name="weekday" id="weekday" required>
-        <option value="">-- Välj dag --</option>
-        <option value="Måndag">Måndag</option>
-        <option value="Tisdag">Tisdag</option>
-        <option value="Onsdag">Onsdag</option>
-        <option value="Torsdag">Torsdag</option>
-        <option value="Fredag">Fredag</option>
-        <option value="Lördag">Lördag</option>
-        <option value="Söndag">Söndag</option>
-      </select>
-    </div>
+      <div class="container">
+        <!-- div1: formulär och alertbox -->
+        <div class="formAndAlert">
+            <h2>Välj vecka du vill administrera</h2>
+            <p>Klicka sedan på ladda vecka</p>
+          <form id="weeklyMenu">
+            <label>
+              Veckonummer (1-53):<br />
+              <input
+                type="number"
+                id="weekNumber"
+                name="weekNumber"
+                min="1"
+                max="53"
+                required
+              />
+            </label>
+            <button type="button" id="loadWeekBtn">Ladda vecka</button><br />
+            <h2>Lägg till ny maträtt</h2>
+            <div id="inputDish">
+              <div>
+                <label for="weekday">Välj veckodag för maträtten</label><br />
+                <select name="weekday" id="weekday" required>
+                  <option value="">-- Välj dag --</option>
+                  <option value="Måndag">Måndag</option>
+                  <option value="Tisdag">Tisdag</option>
+                  <option value="Onsdag">Onsdag</option>
+                  <option value="Torsdag">Torsdag</option>
+                  <option value="Fredag">Fredag</option>
+                  <option value="Lördag">Lördag</option>
+                  <option value="Söndag">Söndag</option>
+                </select>
+              </div>
 
-    <div>
-      <label>
-        Maträtt:<br />
-        <input type="text" name="dish_name" id="dish_name" placeholder="Namn" required />
-      </label>
-    </div>
+              <div>
+                <label>
+                  Maträtt:<br />
+                  <input
+                    type="text"
+                    name="dish_name"
+                    id="dish_name"
+                    placeholder="Namn"
+                    required
+                  />
+                </label>
+              </div>
 
-    <div>
-      <label>
-        Beskrivning:<br />
-        <input
-          type="text"
-          name="dish_description"
-          id="dish_description"
-          placeholder="Beskrivning"
-        />
-      </label>
-    </div>
-    <div>
-      <button type="submit">Spara</button>
-    </div>
-  </div>
-</form>
-<div id="alertbox"></div>
-<div id="currentMenu"></div>
-</div>
+              <div>
+                <label>
+                  Beskrivning:<br />
+                  <input
+                    type="text"
+                    name="dish_description"
+                    id="dish_description"
+                    placeholder="Beskrivning"
+                  />
+                </label>
+              </div>
+
+              <div>
+                <button type="submit">Spara</button>
+              </div>
+            </div>
+          </form>
+
+          <div id="alertbox"></div>
+        </div>
+
+        <!-- div2: current menu -->
+        <div><h2>Veckans maträtter</h2>
+            <p>Klicka på en maträtt för att ändra eller radera</p>
+        <div id="currentMenu">
+            <p id="no-menu-items">Du måste välja en vecka innan innehåll kan visas.</p>
+        </div></div>
+      </div>
     </main>
 
-        <script type="module" src="js/admin.js"></script>
+    <script type="module" src="js/admin.js"></script>
   </body>
 </html>

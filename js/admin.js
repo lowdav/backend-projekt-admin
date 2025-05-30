@@ -56,7 +56,7 @@ function showMenuItems(menuItems) {
   container.innerHTML = "";
 
   if (menuItems.length === 0) {
-    container.innerHTML = "<p>Inga maträtter finns sparade för denna vecka</p>";
+    container.innerHTML = `<p id="no-menu-items">Inga maträtter finns sparade för denna vecka</p>`;
   }
 //Ordning på veckodagarna, för sortering
     const weekdayOrder = [
@@ -148,9 +148,20 @@ document.getElementById("weeklyMenu").addEventListener("submit", async (e) => {
     description
   };
 
+  //För att hantera POST eller PUT och slippa all kod igen, samt samma knapp anropar bara en fuktion oavsett
+
+  let urlEnd = "api/menuitems";
+  let currentMethod = "POST";
+
+if (currentId) {
+    urlEnd = `api/menuitems/${currentId}`;
+    currentMethod = "PUT";
+}
+
+
   try {
-    const response = await fetch(`${server_url}api/menuitems`, {
-      method: "POST",
+    const response = await fetch(`${server_url}${urlEnd}`, {
+      method: currentMethod,
       headers: {
         "Content-Type": "application/json"
       },
@@ -173,3 +184,17 @@ document.getElementById("weeklyMenu").addEventListener("submit", async (e) => {
 });
 
 
+
+
+let currentId = null;
+
+function fillFormForEdit(item) {
+    currentId = item._id;
+
+    document.getElementById("weekNumber").value = item.weekNumber;
+    document.getElementById("weekday").value = item.weekday;
+    document.getElementById("dish_name").value = item.name;
+    document.getElementById("dish_description").value = item.description;
+
+    document.getElementById("alertbox").textContent = "Redigera maträtten - glöm inte att spara.";
+};
