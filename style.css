@@ -85,14 +85,8 @@ form {
     }
     
     form button:hover {
-    background-color: #004d99;
+    background-color: #01942b;
     }
-
-    /* #currentMenu,
-    .formAndAlert {
-    width: 100%;
-    max-width: 600px;
-    } */
 
     .menu-item {
         display: grid;
@@ -104,18 +98,29 @@ form {
         cursor: pointer;
     }
 
-    #no-menu-items {
+    #no-menu-items,
+    #alertbox:not(:empty) {
 
         margin: auto;
         margin-top: 50px;
         margin-bottom: 10px;
         border-radius: 10px;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
-        background-color: rgb(255, 170, 170);
         padding-top: 15px;
         padding-bottom: 15px;
         text-align: center;
+    }
 
+    #no-menu-items{
+        background-color: rgb(255, 170, 170);
+    }
+
+    #alertbox:not(:empty) {
+        background-color: rgb(248, 248, 166);
+    }
+
+    #alertbox:empty {
+        display: none;
     }
 
 
@@ -135,6 +140,29 @@ form {
         padding: 5px;
     }
 
+    .menu-item.selected {
+        border: 2px red dashed;
+    }
+
+    .selected-banner {
+        text-align: center;
+        background-color: rgb(248, 248, 166);
+        padding: 10px !important;
+    }
+
+    .hidden {
+        display: none;
+    }
+    
+    #deleteBtn {
+        background-color: rgb(10, 187, 207);
+        margin-top: 10px;
+        display: none;
+    }
+
+        #deleteBtn:hover {
+        background-color: rgb(255, 0, 0);
+    }
 
 
 @media (min-width: 900px) {
