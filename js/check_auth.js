@@ -15,13 +15,20 @@ export async function isTokenValid() {
           "Authorization": "Bearer " + token
         }
       });
-      //Returnera true om serverkollen av token blev godkänd
-      console.log("token giltig");
-      return response.ok;
+
+      console.log("Svar vid tokenkontroll: ", response.status);
       
-    } catch {
+      if (response.ok) {
+      //Returnera true om serverkollen av token blev godkänd
+      console.log("Token giltig");
+      return response.ok;
+      } else {
+        console.log("Token ogiltig");
+        return false;
+      }
+    } catch (error) {
         //vid fel skicka tillbaka false
-        console.log("token ogiltig");
+        console.log("Tokenkontroll misslyckades: ", error);
       return false;
     }
   }

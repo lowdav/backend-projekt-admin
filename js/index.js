@@ -71,7 +71,7 @@ async function loginUser(e) {
             localStorage.setItem("auth_token", data.token);
             window.location.href="admin.html";
         } else {
-            infoBox.innerHTML = data.error;
+            infoBox.innerHTML = data.error || "Felaktiga inloggningsuppgifter";
         }
 
     } catch (error) {

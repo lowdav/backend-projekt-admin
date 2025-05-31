@@ -25,7 +25,7 @@ document.getElementById("loadWeekBtn").addEventListener("click", () => {
   const weekNumber = parseInt(weekInput);
 
   if (!weekNumber || weekNumber < 1 || weekNumber > 53) {
-    alert("Ange ett giltigt veckonummer mellan 1 och 53.");
+    alertbox.textContent="Ange ett giltigt veckonummer mellan 1 och 53.";
     return;
   }
 
@@ -47,9 +47,9 @@ async function loadMenuForWeek(weekNumber) {
 
     if (response.ok) {
       showMenuItems(data.menu);
-      alertbox.textContent="Aktuell veckomeny hämtad från databasen."
+      alertbox.textContent= data.message || "Meny hämtad."
     } else {
-      alert(data.error);
+      alertbox.textContent= data.error || "Meny kunde inte hämtas.";
     }
   } catch (err) {
     console.error("Fel vid hämtning:", err);
@@ -117,12 +117,14 @@ function showMenuItems(menuItems) {
 
     //gör hela wrappern klickbar, för att hantera ändringar
     //tar bort klassen selected om den finns
+    //lägger till hidden på selected-banner
     wrapper.addEventListener("click", () => {
         document.querySelectorAll(".menu-item").forEach((el) => {
             el.classList.remove("selected");
             el.querySelector(".selected-banner")?.classList.add("hidden");
         });
         //lägger till klassen selected och går vidare till funktionen
+        //tar bort hidden på selectedbanner
     wrapper.classList.add("selected");
     wrapper.querySelector(".selected-banner")?.classList.remove("hidden");
     fillFormForEdit(item);
@@ -189,16 +191,16 @@ if (currentId) {
       body: JSON.stringify(newDish)
     });
 
-    const result = await response.json();
+    const data = await response.json();
 
     if (response.ok) {
-      alertbox.textContent = "Maträtten har sparats.";
+      alertbox.textContent = data.message || "Maträtten har sparats.";
       document.getElementById("weeklyMenu").reset(); // rensa formuläret
       document.getElementById("deleteBtn").style.display = "none"; //dölj radera-knapp
       loadMenuForWeek(weekNumber); // uppdatera listan
       
     } else {
-      alertbox.textContent = "Kunde inte spara maträtten.";
+      alertbox.textContent = data.error || "Kunde inte spara maträtten.";
     }
   } catch (err) {
     console.error("Fel - gick inte att spara:", err);
@@ -237,7 +239,7 @@ document.getElementById("deleteBtn").addEventListener("click", async () => {
     const data = await response.json();
 
     if (response.ok) {
-      document.getElementById("alertbox").textContent = "Maträtten raderades.";
+      document.getElementById("alertbox").textContent = data.message || "Maträtten raderades.";
       // Rensa formuläret förutom veckonummer
       resetForm();
       currentId = null;
@@ -245,7 +247,7 @@ document.getElementById("deleteBtn").addEventListener("click", async () => {
       // Uppdatera listan
       loadMenuForWeek(document.getElementById("weekNumber").value);
     } else {
-      alertbox.textContent = "Radering misslyckades.";
+      alertbox.textContent = data.error || "Radering misslyckades.";
     }
   } catch (err) {
     console.error("Fel vid radering:", err);
