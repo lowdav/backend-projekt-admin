@@ -7,11 +7,18 @@
     <link rel="stylesheet" href="style.css">
     <title>Projekt backendkursen dalo2101</title>
 </head>
-
 <body>
+        <header>
+        <nav>
+            <ul>
+                <li><a href="admin.html">Veckomeny</a></li>
+                <li><a href="preorders.html">Förbeställningar</a></li>
+            </ul>
+        </nav>
+    </header>
     <main>
         <h1>Administrera meny</h1>
-
+        <div id="alertbox"></div>
         <div class="container">
             <!-- div1: formulär och alertbox -->
             <div class="formAndAlert">
@@ -63,7 +70,7 @@
                     </div>
                 </form>
 
-                <div id="alertbox"></div>
+                <!-- <div id="alertbox"></div> -->
             </div>
 
             <!-- div2: current menu -->
@@ -72,7 +79,7 @@
                 <p>Klicka på en maträtt för att ändra eller radera</p>
                 <div id="currentMenu">
                     <p id="no-menu-items">
-                        Du måste välja en vecka innan innehåll kan visas.
+                        Välj en vecka för att ladda meny.
                     </p>
                 </div>
             </div>

@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("loadWeekBtn").addEventListener("click", () => {
     const week = parseInt(document.getElementById("weekFilter").value);
+    alertbox.textContent = "";
     if (!week || week < 1 || week > 53) {
       alertbox.textContent = "Ange ett giltigt veckonummer (1-53).";
       return;
@@ -34,7 +35,7 @@ async function loadPreorders(weekNumber) {
 
     if (response.ok) {
       if (data.preorders.length === 0) {
-        preorderContainer.innerHTML = "<p>Inga förbeställningar för vald vecka.</p>";
+        preorderContainer.innerHTML = "<p id='no-preorders'>Inga förbeställningar för vald vecka.</p>";
       } else {
         console.log(data.preorders);
         showPreorders(data.preorders);
