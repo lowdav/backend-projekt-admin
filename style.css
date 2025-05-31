@@ -2,6 +2,10 @@
   font-family: Verdana, Tahoma, sans-serif;
 }
 
+html {
+  background-color: #f3f3f3;
+}
+
 main {
   width: 90%;
   min-width: 250px;
@@ -30,9 +34,9 @@ h1 {
 }
 
 #alertbox {
-  margin: auto;
   text-align: center;
   padding: 20px;
+
 }
 
 #status {
@@ -63,7 +67,8 @@ form label {
 }
 
 form input,
-form select {
+form select,
+input {
   width: 100%;
   padding: 15px;
   margin-bottom: 5px;
@@ -72,7 +77,8 @@ form select {
   box-sizing: border-box;
 }
 
-form button {
+form button,
+button {
   width: 100%;
   display: block;
   padding: 10px;
@@ -161,6 +167,52 @@ form button:hover {
 #deleteBtn:hover {
   background-color: rgb(255, 0, 0);
 }
+
+.preorder {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  max-width: 500px;
+  margin-top: 20px;
+}
+
+.right-div,
+.left-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.left-div > *,
+.right-div > * {
+  margin: 0;
+}
+
+.preorder-container{
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (min-width: 900px) {
   .container {

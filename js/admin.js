@@ -1,5 +1,5 @@
 import { server_url } from "./config.js";
-import { isTokenValid } from "./check_auth.js";
+import { checkToken} from "./checktoken.js";
 
 // skapar variabler i globalt scope 
 let alertbox;
@@ -8,16 +8,10 @@ let currentId = null;
 
 //kolla om giltig token finns vid sidladdning, annars skicka till startsidan
 document.addEventListener("DOMContentLoaded", () => {
-  async function checkToken() {
-    const tokenIsValid = await isTokenValid();
-
-    if (!tokenIsValid) {
-      window.location.href = "index.html";
-    }
-    alertbox = document.getElementById("alertbox");
-  }
   checkToken();
-});
+  //Hämta element från DOM
+  alertbox = document.getElementById("alertbox");
+  });
 
 //eventlyssnare för att ladda veckomenyn
 document.getElementById("loadWeekBtn").addEventListener("click", () => {
@@ -65,6 +59,7 @@ function showMenuItems(menuItems) {
 
   if (menuItems.length === 0) {
     container.innerHTML = `<p id="no-menu-items">Inga maträtter finns sparade för denna vecka</p>`;
+    return;
   }
 //Ordning på veckodagarna, för sortering
     const weekdayOrder = [
@@ -181,11 +176,13 @@ if (currentId) {
     currentMethod = "PUT";
 }
 
+const token = localStorage.getItem("auth_token");
 
   try {
     const response = await fetch(`${server_url}${urlEnd}`, {
       method: currentMethod,
       headers: {
+        "Authorization": "Bearer " + token,
         "Content-Type": "application/json"
       },
       body: JSON.stringify(newDish)
@@ -231,9 +228,14 @@ document.getElementById("deleteBtn").addEventListener("click", async () => {
   const confirmDelete = confirm("Vill du verkligen radera maträtten?");
   if (!confirmDelete) return;
 
+  const token = localStorage.getItem("auth_token");
+
   try {
     const response = await fetch(`${server_url}api/menuitems/${currentId}`, {
-      method: "DELETE"
+      method: "DELETE",
+      headers: {
+        "Authorization": "Bearer " + token
+      }
     });
 
     const data = await response.json();
