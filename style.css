@@ -20,7 +20,8 @@ body {
 
 main,
 header,
-nav {
+nav,
+footer {
   width: 90%;
   min-width: 250px;
   max-width: 1600px;
@@ -32,6 +33,12 @@ header {
   background-color: #0066cc;
   min-height: 150px;
   display: flex;
+}
+
+footer {
+  background-color: #0066cc;
+  color: white;
+  text-align: center;
 }
 
 main {

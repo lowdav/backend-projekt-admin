@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projekt backendkursen dalo2101</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <nav>
@@ -17,20 +19,23 @@
     </header>
     <main>
         <h1>Administrera förbeställningar</h1>
-            <div id="alertbox"></div>
-            <div class="preorder-container">
-            
+        <div id="alertbox"></div>
+        <div class="preorder-container">
+
             <h2>Välj vecka för att se förbeställningar</h2>
             <input type="number" id="weekFilter" placeholder="Ange vecka (1-53)">
             <button id="loadWeekBtn">Ladda vecka</button>
-            </div>
-            <!-- <div id="alertbox"></div> -->
-             <div class="limit-width">
+        </div>
+        <!-- <div id="alertbox"></div> -->
+        <div class="limit-width">
             <div id="preorders"></div>
-            </div>
-        
-    </main>
+        </div>
 
+    </main>
+    <footer>
+        <p>dalo2101</p>
+    </footer>
     <script type="module" src="js/preorders.js"></script>
 </body>
+
 </html>
