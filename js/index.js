@@ -27,12 +27,12 @@ async function showStatus() {
         const tokenIsValid = await isTokenValid();
 
         if (tokenIsValid) {
-            statusBox.innerHTML = 'Du är redan inloggad och kan gå till <a href="admin.html">adminsidan</a>';
-            console.log("showStatus: tokenIsValid = ", tokenIsValid);
+            // window.location.href = "admin.html";
+            // console.log("showStatus: tokenIsValid = ", tokenIsValid);
 
         } else {
-            statusBox.innerHTML = "Inte inloggad";
-            console.log("showStatus: tokenIsValid = ", tokenIsValid);
+            statusBox.innerHTML = "Logga in för att komma till admin-sidan";
+            // console.log("showStatus: tokenIsValid = ", tokenIsValid);
         }
     };
 

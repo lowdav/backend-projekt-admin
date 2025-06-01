@@ -1,8 +1,9 @@
 import { server_url } from "./config.js";
 import { checkToken} from "./checktoken.js";
+import { removeToken } from "./checktoken.js";
 
 // skapar variabler i globalt scope 
-let alertbox;
+let alertbox, logoutLink;
 //Hålla koll på vilken post som är aktuell för ändring/radering
 let currentId = null;
 
@@ -11,7 +12,19 @@ document.addEventListener("DOMContentLoaded", () => {
   checkToken();
   //Hämta element från DOM
   alertbox = document.getElementById("alertbox");
+
+
+//Eventlyssnare för att logga ut + och ta bort token + skicka till startsidan
+  logoutLink = document.getElementById('logout-link').addEventListener('click', function (e) {
+  e.preventDefault();
+  removeToken();
+  }
+);
+
   });
+
+
+
 
 //eventlyssnare för att ladda veckomenyn
 document.getElementById("loadWeekBtn").addEventListener("click", () => {
