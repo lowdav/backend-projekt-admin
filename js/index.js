@@ -1,4 +1,5 @@
 import { server_url } from "./config.js";
+import { isTokenValid } from "./check_auth.js";
 
 let infoBox;
 let statusBox;
@@ -26,49 +27,14 @@ async function showStatus() {
         const tokenIsValid = await isTokenValid();
 
         if (tokenIsValid) {
-            statusBox.innerHTML = 'Du är inloggad och kan gå till <a href="admin.html">adminsidan</a>';
-            console.log("showStatus: tokenIsValid = ", tokenIsValid);
+            // window.location.href = "admin.html";
+            // console.log("showStatus: tokenIsValid = ", tokenIsValid);
 
         } else {
-            statusBox.innerHTML = "Inte inloggad";
-            console.log("showStatus: tokenIsValid = ", tokenIsValid);
+            statusBox.innerHTML = "Logga in för att komma till admin-sidan";
+            // console.log("showStatus: tokenIsValid = ", tokenIsValid);
         }
     };
-
-
-
-//Funktion för att kolla om token är giltig
-async function isTokenValid() {
-    //kollar om det finns en token med rätt namn i localstorage
-    const token = localStorage.getItem("auth_token");
-    if (!token) {
-        console.log("Ingen token hittades")
-        return false;
-    }
-  //anropar backend route för kontrollen
-    try {
-      const response = await fetch(`${server_url}api/auth`, {
-        headers: {
-          "Authorization": "Bearer " + token
-        }
-      });
-      //Returnera true om serverkollen av token blev godkänd
-      console.log("token giltig");
-      return response.ok;
-      
-    } catch {
-        //vid fel skicka tillbaka false
-        console.log("token ogiltig");
-      return false;
-    }
-  }
-
-
-
-
-
-
-
 
 
 //Logga in användare
@@ -103,14 +69,13 @@ async function loginUser(e) {
         if(response.ok) {    
             console.log("Här kommer data: ", data);
             localStorage.setItem("auth_token", data.token);
-            statusBox.innerHTML = 'Du är inloggad och kan gå till <a href="admin.html">adminsidan</a>';
-            loginForm.reset();
+            window.location.href="admin.html";
         } else {
-            infoBox.innerHTML = data.error;
+            infoBox.innerHTML = data.error || "Felaktiga inloggningsuppgifter";
         }
 
     } catch (error) {
         console.log("Tekniskt fel: ", error.message);
         infoBox.innerHTML = "Tekniskt fel vid inloggning";
     }
-};
+}

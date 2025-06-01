@@ -2,8 +2,8 @@
   "name": "frontend",
   "version": "1.0.0",
 "scripts": {
-  "start": "parcel index.html admin.html",
-  "build": "parcel build index.html admin.html"
+  "start": "parcel index.html admin.html preorders.html",
+  "build": "parcel build index.html admin.html preorders.html"
 },
   "keywords": [],
   "author": "",

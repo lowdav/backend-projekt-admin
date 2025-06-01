@@ -1,11 +1,98 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Projekt backendkursen dalo2101</title>
 </head>
 <body>
-    
+        <header>
+        <nav>
+            <ul>
+                <li><a href="admin.html">Veckomeny</a></li>
+                <li><a href="preorders.html">Förbeställningar</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+
+    <main>
+        <p id="status">Du är inloggad. <a id="logout-link" href="#">Logga ut</a></p>
+        <h1>Administrera meny</h1>
+        
+        <div id="alertbox"></div>
+        <div class="container">
+            <!-- div1: formulär och alertbox -->
+            <div class="formAndAlert">
+                <h2>Välj vecka du vill administrera</h2>
+                <p>Klicka sedan på ladda vecka</p>
+                <form id="weeklyMenu">
+                    <label>
+                        Veckonummer (1-53):<br>
+                        <input type="number" id="weekNumber" name="weekNumber" min="1" max="53" required>
+                    </label>
+                    <button type="button" id="loadWeekBtn">Ladda vecka</button><br>
+                    <h2>Lägg till ny maträtt</h2>
+                    <div id="inputDish">
+                        <div>
+                            <label for="weekday">Välj veckodag för maträtten</label><br>
+                            <select name="weekday" id="weekday" required>
+                                <option value="">-- Välj dag --</option>
+                                <option value="Måndag">Måndag</option>
+                                <option value="Tisdag">Tisdag</option>
+                                <option value="Onsdag">Onsdag</option>
+                                <option value="Torsdag">Torsdag</option>
+                                <option value="Fredag">Fredag</option>
+                                <option value="Lördag">Lördag</option>
+                                <option value="Söndag">Söndag</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label>
+                                Maträtt:<br>
+                                <input type="text" name="dish_name" id="dish_name" placeholder="Namn" required>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label>
+                                Beskrivning:<br>
+                                <input type="text" name="dish_description" id="dish_description"
+                                    placeholder="Beskrivning">
+                            </label>
+                        </div>
+
+                        <div>
+                            <button type="submit">Spara</button>
+                        </div>
+                        <div>
+                            <button type="button" id="deleteBtn">Radera</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- <div id="alertbox"></div> -->
+            </div>
+
+            <!-- div2: current menu -->
+            <div>
+                <h2>Veckans maträtter <span id="selectedWeek"></span></h2>
+                <p>Klicka på en maträtt för att ändra eller radera</p>
+                <div id="currentMenu">
+                    <p id="no-menu-items">
+                        Välj en vecka för att ladda meny.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+<footer>
+    <p>dalo2101</p>
+</footer>
+    <script type="module" src="js/admin.js"></script>
 </body>
+
 </html>
