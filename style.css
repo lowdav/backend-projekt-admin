@@ -248,6 +248,12 @@ form button:hover {
   margin: 20px auto;
 }
 
+.preorder * {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 .right-div,
 .left-div {
   display: flex;
